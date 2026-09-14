@@ -258,7 +258,7 @@ func start_new_day() -> void:
 			crop_node.advance_day()
 	for cell in crops.keys().duplicate():
 		var crop: Dictionary = crops[cell]
-			if crop.watered or weather == "小雨":
+		if crop.watered or weather == "小雨":
 			crop.growth = min(3, crop.growth + 1)
 			if soil_layer != null:
 				soil_layer.set_cells_terrain_connect([cell], 0, 0)
@@ -432,3 +432,4 @@ func draw_overlay_interface() -> void:
 	if message_time > 0:
 		draw_rect(Rect2(250, 28, 610, 44), Color("#fff4d6", 0.95))
 		draw_string(ThemeDB.fallback_font, Vector2(270, 57), message, HORIZONTAL_ALIGNMENT_LEFT, 570, 16, Color("#244b4c"))
+
