@@ -122,8 +122,6 @@ func grid_at_world(pos: Vector2) -> Vector2i:
 
 func is_walkable_world(pos: Vector2) -> bool:
 	var cell := grid_at_world(pos)
-	if grass_layer == null or grass_layer.get_cell_source_id(cell) == -1:
-		return false
 	if water_layer != null and water_layer.get_cell_source_id(cell) != -1:
 		return false
 	return true
