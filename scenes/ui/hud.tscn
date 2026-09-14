@@ -1,4 +1,8 @@
-[gd_scene format=3]
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/ui/dialog_box.png" id="1_dialog"]
+[ext_resource type="Texture2D" path="res://assets/ui/coins.png" id="2_coins"]
+[ext_resource type="Texture2D" path="res://assets/ui/stamina_circle_with_white_outline_sprite_sheet.png" id="3_stamina"]
 
 [node name="FarmHud" type="CanvasLayer"]
 unique_name_in_owner = true
@@ -15,6 +19,32 @@ offset_top = 28.0
 offset_right = 860.0
 offset_bottom = 72.0
 horizontal_alignment = 1
+
+[node name="MessagePanel" type="TextureRect" parent="StatusPanel"]
+unique_name_in_owner = true
+texture = ExtResource("1_dialog")
+visible = false
+mouse_filter = 2
+
+[node name="CoinsIcon" type="TextureRect" parent="StatusPanel"]
+unique_name_in_owner = true
+offset_left = 880.0
+offset_top = 16.0
+offset_right = 912.0
+offset_bottom = 48.0
+texture = ExtResource("2_coins")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StaminaIcon" type="TextureRect" parent="StatusPanel"]
+unique_name_in_owner = true
+offset_left = 660.0
+offset_top = 16.0
+offset_right = 692.0
+offset_bottom = 48.0
+texture = ExtResource("3_stamina")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="InstructionLabel" type="Label" parent="StatusPanel"]
 unique_name_in_owner = true
