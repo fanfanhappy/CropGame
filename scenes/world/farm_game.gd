@@ -174,7 +174,7 @@ func interact(target: Vector2i) -> void:
 				show_message("收获成功！获得 35 金币和 1 颗种子。")
 		elif crop.watered:
 			show_message("这株作物今天已经浇过水了。")
-			else:
+		else:
 			crop.watered = true
 			play_player_action("water")
 			if soil_layer != null:
