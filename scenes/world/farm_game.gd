@@ -164,7 +164,7 @@ func interact(target: Vector2i) -> void:
 		soil[target] = false
 	if crops.has(target):
 		var crop: Dictionary = crops[target]
-			if crop.growth >= 3:
+		if crop.growth >= 3:
 				crops.erase(target)
 				play_player_action("harvest")
 			coins += 35
@@ -175,8 +175,8 @@ func interact(target: Vector2i) -> void:
 		elif crop.watered:
 			show_message("这株作物今天已经浇过水了。")
 			else:
-				crop.watered = true
-				play_player_action("water")
+			crop.watered = true
+			play_player_action("water")
 			if soil_layer != null:
 				soil_layer.set_cells_terrain_connect([target], 0, 1)
 			crops[target] = crop
@@ -436,4 +436,5 @@ func draw_overlay_interface() -> void:
 	if message_time > 0:
 		draw_rect(Rect2(250, 28, 610, 44), Color("#fff4d6", 0.95))
 		draw_string(ThemeDB.fallback_font, Vector2(270, 57), message, HORIZONTAL_ALIGNMENT_LEFT, 570, 16, Color("#244b4c"))
+
 
