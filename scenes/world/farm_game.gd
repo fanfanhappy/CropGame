@@ -167,9 +167,10 @@ func interact(target: Vector2i) -> void:
 		if crop.growth >= 3:
 			crops.erase(target)
 			coins += 35
+			seeds += 1
 			if inventory != null and inventory.has_method("add_item"):
 				inventory.add_item("crop", 1)
-			show_message("收获成功！卖出作物获得 35 金币。")
+			show_message("收获成功！获得 35 金币和 1 颗种子。")
 		elif crop.watered:
 			show_message("这株作物今天已经浇过水了。")
 		else:
@@ -190,7 +191,7 @@ func interact(target: Vector2i) -> void:
 	if seeds > 0:
 		if not spend_stamina(2): return
 		seeds -= 1
-		crops[target] = {"growth": 0, "watered": watered_soil.get(target, false)}
+		crops[target] = {"growth": 0, "watered": watered_soil.get(target, false), "days_growing": 0, "crop_id": "tomato"}
 		watered_soil.erase(target)
 		if crops[target].watered:
 			show_message("种子已种下，这块地已经浇过水了。")
@@ -260,6 +261,7 @@ func start_new_day() -> void:
 		var crop: Dictionary = crops[cell]
 		if crop.watered or weather == "小雨":
 			crop.growth = min(3, crop.growth + 1)
+			crop.days_growing = int(crop.get("days_growing", 0)) + 1
 			if soil_layer != null:
 				soil_layer.set_cells_terrain_connect([cell], 0, 0)
 		else:
