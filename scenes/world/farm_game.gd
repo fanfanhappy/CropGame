@@ -19,6 +19,8 @@ var coins := 120
 var seeds := 8
 var stamina := 100
 var max_stamina := 100
+var weather := "晴天"
+var weather_options := ["晴天", "多云", "小雨"]
 var message := "欢迎来到小溪农场！用鼠标指向地块并点击进行种田。"
 var message_time := 6.0
 var soil: Dictionary = {}
@@ -250,12 +252,13 @@ func try_chop_tree(world_pos: Vector2) -> bool:
 func start_new_day() -> void:
 	day += 1
 	stamina = max_stamina
+	weather = weather_options[(day - 1) % weather_options.size()]
 	for crop_node in get_tree().get_nodes_in_group("growing_crops"):
 		if crop_node.has_method("advance_day"):
 			crop_node.advance_day()
 	for cell in crops.keys().duplicate():
 		var crop: Dictionary = crops[cell]
-		if crop.watered:
+			if crop.watered or weather == "小雨":
 			crop.growth = min(3, crop.growth + 1)
 			if soil_layer != null:
 				soil_layer.set_cells_terrain_connect([cell], 0, 0)
@@ -267,7 +270,7 @@ func start_new_day() -> void:
 		watered_soil.erase(cell)
 		if soil_layer != null:
 			soil_layer.set_cells_terrain_connect([cell], 0, 0)
-	show_message("新的一天开始了！已浇水的作物长大了一格。")
+		show_message("新的一天：%s。雨天会自动浇水。" % weather)
 	save_progress()
 
 func save_progress() -> void:
@@ -423,6 +426,7 @@ func draw_overlay_interface() -> void:
 	draw_string(ThemeDB.fallback_font, Vector2(910, 38), "金币 %d" % coins, HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Color("#ffe7a3"))
 	draw_string(ThemeDB.fallback_font, Vector2(910, 68), "种子 %d" % seeds, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#d7f0cf"))
 	draw_string(ThemeDB.fallback_font, Vector2(700, 38), "体力 %d/%d" % [stamina, max_stamina], HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#ffd59a"))
+	draw_string(ThemeDB.fallback_font, Vector2(700, 68), "天气 %s" % weather, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#c5e9d1"))
 	draw_rect(Rect2(24, 678, 1104, 34), Color("#244b4c", 0.92))
 	draw_string(ThemeDB.fallback_font, Vector2(40, 701), "WASD / 方向键 移动    左键 翻地/播种/收获    右键 浇水    T 进入下一天", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, cream)
 	if message_time > 0:
