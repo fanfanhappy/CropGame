@@ -164,8 +164,9 @@ func interact(target: Vector2i) -> void:
 		soil[target] = false
 	if crops.has(target):
 		var crop: Dictionary = crops[target]
-		if crop.growth >= 3:
-			crops.erase(target)
+			if crop.growth >= 3:
+				crops.erase(target)
+				play_player_action("harvest")
 			coins += 35
 			seeds += 1
 			if inventory != null and inventory.has_method("add_item"):
@@ -173,8 +174,9 @@ func interact(target: Vector2i) -> void:
 			show_message("收获成功！获得 35 金币和 1 颗种子。")
 		elif crop.watered:
 			show_message("这株作物今天已经浇过水了。")
-		else:
-			crop.watered = true
+			else:
+				crop.watered = true
+				play_player_action("water")
 			if soil_layer != null:
 				soil_layer.set_cells_terrain_connect([target], 0, 1)
 			crops[target] = crop
