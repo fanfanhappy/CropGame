@@ -429,10 +429,16 @@ func draw_overlay_interface() -> void:
 	draw_string(ThemeDB.fallback_font, Vector2(28, 68), "第 %d 天" % day, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#c5e9d1"))
 	draw_string(ThemeDB.fallback_font, Vector2(910, 38), "金币 %d" % coins, HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Color("#ffe7a3"))
 	draw_string(ThemeDB.fallback_font, Vector2(910, 68), "种子 %d" % seeds, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#d7f0cf"))
+	var wood_count := 0
+	var crop_count := 0
+	if inventory != null and "items" in inventory:
+		wood_count = int(inventory.items.get("wood", 0))
+		crop_count = int(inventory.items.get("crop", 0))
+	draw_string(ThemeDB.fallback_font, Vector2(470, 38), "木材 %d  作物 %d" % [wood_count, crop_count], HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#ffe7a3"))
 	draw_string(ThemeDB.fallback_font, Vector2(700, 38), "体力 %d/%d" % [stamina, max_stamina], HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#ffd59a"))
 	draw_string(ThemeDB.fallback_font, Vector2(700, 68), "天气 %s" % weather, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("#c5e9d1"))
 	draw_rect(Rect2(24, 678, 1104, 34), Color("#244b4c", 0.92))
-	draw_string(ThemeDB.fallback_font, Vector2(40, 701), "WASD / 方向键 移动    左键 翻地/播种/收获    右键 浇水    T 进入下一天", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, cream)
+	draw_string(ThemeDB.fallback_font, Vector2(40, 701), "WASD / 方向键 移动    左键 翻地/播种/收获    右键 浇水    T 下一天    F5 保存    F9 读档", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, cream)
 	if message_time > 0:
 		draw_rect(Rect2(250, 28, 610, 44), Color("#fff4d6", 0.95))
 		draw_string(ThemeDB.fallback_font, Vector2(270, 57), message, HORIZONTAL_ALIGNMENT_LEFT, 570, 16, Color("#244b4c"))
