@@ -47,3 +47,4 @@ groups = ["saveable_entities"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle_up"
+position = Vector2(0, -24)

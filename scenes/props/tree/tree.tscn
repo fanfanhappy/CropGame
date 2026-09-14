@@ -10,6 +10,7 @@ groups = ["interactable_props", "saveable_entities"]
 
 [node name="VisualBody" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -28)
 
 [node name="TreeSprite" type="Sprite2D" parent="VisualBody"]
 unique_name_in_owner = true
