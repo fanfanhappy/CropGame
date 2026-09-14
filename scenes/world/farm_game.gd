@@ -12,7 +12,7 @@ const GRASS_SOURCE := Rect2(0, 80, 16, 16)
 var grass_texture: Texture2D = preload("res://assets/tilesets/grass/tileset_grass.png")
 
 var player_pos := Vector2(ORIGIN.x + TILE * 6.5, ORIGIN.y + TILE * 6.5)
-var facing := Vector2i(0, 1)
+var facing := Vector2i(0, -1)
 var move_speed := 210.0
 var day := 1
 var coins := 120

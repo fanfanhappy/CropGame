@@ -46,4 +46,4 @@ groups = ["saveable_entities"]
 [node name="ActionSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_player")
-animation = &"idle_down"
+animation = &"idle_up"
