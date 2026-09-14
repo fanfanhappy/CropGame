@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[node name="FarmHud" type="CanvasLayer"]
+unique_name_in_owner = true
+groups = ["ui_widgets"]
+
+[node name="StatusPanel" type="Control" parent="."]
+unique_name_in_owner = true
+mouse_filter = 2
+
+[node name="MessageLabel" type="Label" parent="StatusPanel"]
+unique_name_in_owner = true
+offset_left = 250.0
+offset_top = 28.0
+offset_right = 860.0
+offset_bottom = 72.0
+horizontal_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="StatusPanel"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 678.0
+offset_right = 1128.0
+offset_bottom = 712.0

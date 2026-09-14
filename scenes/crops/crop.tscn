@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/crops/crop.gd" id="1_crop"]
+
+[node name="Crop" type="Node2D"]
+script = ExtResource("1_crop")
+unique_name_in_owner = true
+groups = ["growing_crops", "saveable_entities"]
+
+[node name="VisualBody" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CropSprite" type="Sprite2D" parent="VisualBody"]
+unique_name_in_owner = true
